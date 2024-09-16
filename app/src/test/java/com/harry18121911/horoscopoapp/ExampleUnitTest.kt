@@ -1,4 +1,4 @@
-package com.harry18121911.horscopoapp
+package com.harry18121911.horoscopoapp
 
 import org.junit.Test
 

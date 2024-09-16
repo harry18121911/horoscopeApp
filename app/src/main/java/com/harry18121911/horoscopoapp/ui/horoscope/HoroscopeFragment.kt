@@ -1,11 +1,11 @@
-package com.harry18121911.horscopoapp.ui.horoscope
+package com.harry18121911.horoscopoapp.ui.horoscope
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.harry18121911.horscopoapp.databinding.FragmentHoroscopeBinding
+import com.harry18121911.horoscopoapp.databinding.FragmentHoroscopeBinding
 
 class HoroscopeFragment : Fragment() {
 

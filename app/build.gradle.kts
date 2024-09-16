@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.harry18121911.horscopoapp"
+    namespace = "com.harry18121911.horoscopoapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.harry18121911.horscopoapp"
+        applicationId = "com.harry18121911.horoscopoapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
