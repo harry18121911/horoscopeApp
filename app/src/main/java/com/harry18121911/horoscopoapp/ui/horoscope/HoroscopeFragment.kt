@@ -1,19 +1,19 @@
 package com.harry18121911.horoscopoapp.ui.horoscope
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.harry18121911.horoscopoapp.databinding.FragmentHoroscopeBinding
+import com.harry18121911.horoscopoapp.domain.model.HoroscopeInfo
+import com.harry18121911.horoscopoapp.domain.model.HoroscopeModel
 import com.harry18121911.horoscopoapp.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -39,7 +39,26 @@ class HoroscopeFragment : Fragment() {
     }
 
     private fun initList(){
-        horoscopeAdapter = HoroscopeAdapter(onItemSelected = {Toast.makeText(context,getString(it.name),Toast.LENGTH_LONG).show()})
+        horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
+             val type: HoroscopeModel = when(it){
+                HoroscopeInfo.Aquarius -> HoroscopeModel.Aquarius
+                HoroscopeInfo.Aries -> HoroscopeModel.Aries
+                HoroscopeInfo.Cancer -> HoroscopeModel.Cancer
+                HoroscopeInfo.Capricorn -> HoroscopeModel.Capricorn
+                HoroscopeInfo.Gemini -> HoroscopeModel.Gemini
+                HoroscopeInfo.Leo -> HoroscopeModel.Leo
+                HoroscopeInfo.Libra -> HoroscopeModel.Libra
+                HoroscopeInfo.Sagittarius -> HoroscopeModel.Sagittarius
+                HoroscopeInfo.Scorpio -> HoroscopeModel.Scorpio
+                HoroscopeInfo.Taurus -> HoroscopeModel.Taurus
+                HoroscopeInfo.Virgo -> HoroscopeModel.Virgo
+                HoroscopeInfo.Pisces -> HoroscopeModel.Pisces
+
+             }
+            findNavController().navigate(
+                HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity(type)
+            )
+        })
         binding.rvHoroscope.layoutManager = GridLayoutManager(context, 2)
         binding.rvHoroscope.adapter = horoscopeAdapter
     }
