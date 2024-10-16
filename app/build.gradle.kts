@@ -21,12 +21,22 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+
             )
+            resValue("string", "harry", "HoroscopeApp")
+            buildConfigField("String", "BASE_URL", "\"https://newastro.vercel.app/\"")
+        }
+
+        getByName("debug") {
+            isDebuggable = true
+            resValue("string", "harry", "[DEBUG] HoroscopeApp")
+            buildConfigField("String", "BASE_URL", "\"https://newastro.vercel.app/\"")
         }
     }
     compileOptions {
@@ -36,14 +46,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
 }
 
 dependencies {
-    
+
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
@@ -51,7 +62,8 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation(libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
